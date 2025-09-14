@@ -1,3 +1,5 @@
+import random, csv, time
+
 # Insertion Sort
 def insertion_sort(arr, left, right, counter):
     for i in range(left + 1, right + 1):
@@ -51,7 +53,7 @@ def merge_sort(arr, left, right, counter):
         merge(arr, left, mid, right, counter)
 
 # Hybrid MergeSort (threshold S)
-def hybrid_merge_sort(arr, left, right, counter, S=10):
+def hybrid_merge_sort(arr, left, right, counter, S):
     if right - left + 1 <= S:
         insertion_sort(arr, left, right, counter)
     else:
@@ -60,3 +62,68 @@ def hybrid_merge_sort(arr, left, right, counter, S=10):
             hybrid_merge_sort(arr, left, mid, counter, S)
             hybrid_merge_sort(arr, mid + 1, right, counter, S)
             merge(arr, left, mid, right, counter)
+
+
+# Generate datasets
+n = [1000, 10000, 100000, 1000000, 10000000] # sizes for n
+x = 1000 # max value allowed in array
+s = [10, 50, 100, 500, 1000] # threshold s for hybrid sort (if subarr<S, use insertion sort instead of recrusive mergesort)
+
+# Experiment
+def experiment_vary_n(ns, fixed_s,):
+    results = []
+    for n in ns:
+        arr = [random.randint(0, x) for _ in range(n)]
+
+        # run merge sort
+        count_merge = [0]
+        merge_sort(arr.copy(), 0, n-1, count_merge) # copy array so sorting doesn't overwrite original arr
+
+        # run hybrid merge sort
+        count_hybrid = [0]
+        hybrid_merge_sort(arr.copy(), 0, n-1, count_hybrid, fixed_s)
+
+        results.append({
+            "n": n,
+            "s": fixed_s,
+            "merge_count": count_merge[0],
+            "hybrid_count": count_hybrid[0]
+        })
+    return results
+
+
+def experiment_vary_s(ss, fixed_n):
+    results = []
+    arr = [random.randint(0, x) for _ in range(fixed_n)]
+
+    # run merge sort
+    count_merge = [0]
+    merge_sort(arr.copy(), 0, fixed_n-1, count_merge)
+
+    # run hybrid sort w varying s
+    for s in ss:
+        count_hybrid = [0]
+        hybrid_merge_sort(arr.copy(), 0, fixed_n-1, count_hybrid, s)
+
+        results.append({
+            "n": fixed_n,
+            "s": s,
+            "merge_count": count_merge[0],
+            "hybrid_count": count_hybrid[0]
+        })
+    return results
+
+# Export results to csv file
+def save_results_to_csv(filename, results):
+    keys = results[0].keys()
+    with open(filename, "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=keys)
+        writer.writeheader()
+        writer.writerows(results)
+
+# Run code
+res_n = experiment_vary_n(n, fixed_s=20)
+res_s = experiment_vary_s(s, fixed_n=20000)
+
+save_results_to_csv("results_vary_n.csv", res_n)
+save_results_to_csv("results_vary_s.csv", res_s)
