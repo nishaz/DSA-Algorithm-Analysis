@@ -122,8 +122,8 @@ def save_results_to_csv(filename, results):
         writer.writerows(results)
 
 # Run code
-res_n = experiment_vary_n(n, fixed_s=20)
-res_s = experiment_vary_s(s, fixed_n=20000)
+res_n = experiment_vary_n(n, fixed_s=50)
+res_s = experiment_vary_s(s, fixed_n=10000)
 
-save_results_to_csv("results_vary_n.csv", res_n)
-save_results_to_csv("results_vary_s.csv", res_s)
+save_results_to_csv("Lab1/results_vary_n.csv", res_n)
+save_results_to_csv("Lab1/results_vary_s.csv", res_s)
