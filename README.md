@@ -1,28 +1,28 @@
-# Algorithm Analysis Lab
+## Algorithm Analysis Lab
 
 A repository containing implementations and empirical analyses of core algorithms and data structures, exploring their theoretical and practical performance characteristics.
 
 
-## 📁 Experiments
+### Experiments
 
-### [Experiment 1: Hybrid Merge/Insertion Sort](./Experiment_1_Hybrid_Sort/)
+#### [Experiment 1: Hybrid Merge/Insertion Sort](./Experiment_1_HybridSort/)
 **Analysis of a hybrid sorting algorithm.**
 - **Objective:** To determine the performance gain by combining Merge Sort with Insertion Sort for small subarrays.
 - **Key Concepts:** Divide-and-Conquer, Recursion Overhead, Empirical Optimization.
 
-### [Experiment 2: Dijkstra's Algorithm Implementations](./Experiment_2_Dijkstra_Implementations/)
+#### [Experiment 2: Dijkstra's Algorithm](./Experiment_2_Dijkstra_Algorithm/)
 **Comparative analysis of data structures on algorithm performance.**
 - **Objective:** To evaluate how graph representations (Adjacency Matrix vs. List) and priority queue implementations (Array vs. Min-Heap) affect the efficiency of Dijkstra's algorithm.
 - **Key Concepts:** Graph Theory, Time Complexity, Priority Queues, Empirical Analysis.
 
 
-## 🛠️ Technologies Used
+### Technologies Used
 
 - **Language:** Python
 - **Libraries:** `pandas`, `matplotlib`, `numpy`, `random`, `seaborn`, `csv`, `time`
 
 
-## 📊 General Methodology
+### General Methodology
 
 For each experiment, the process is:
 1.  **Implementation:** Code the core algorithms.

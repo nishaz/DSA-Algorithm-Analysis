@@ -1,4 +1,4 @@
-# Experiment 1: Hybrid Merge/Insertion Sort Analysis
+## Experiment 1: Hybrid Merge/Insertion Sort Analysis
 **Objective:** To investigate the performance benefits of a hybrid sorting algorithm that combines Merge Sort and Insertion Sort.
 
 **Description:**
